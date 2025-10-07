@@ -1,0 +1,47 @@
+[
+  {
+    "id": "p1",
+    "title": "Stellar Blade",
+    "category": "Aventura",
+    "price": 5999,
+    "stock": 12,
+    "img": "https://i.postimg.cc/pT9rbtv7/Beru-Gaming-Stellar-Blade.jpg",
+    "description": "Hack & Slash, con toques de Bayonetta y Devil May Cry."
+  },
+  {
+    "id": "p2",
+    "title": "Call of Duty: Black Ops 7",
+    "category": "Shooter",
+    "price": 7999,
+    "stock": 8,
+    "img": "https://i.postimg.cc/P5tqfDh1/Beru-Gaming-COD-BO7.jpg",
+    "description": "Acción rápida, multijugador y modos competitivos."
+  },
+  {
+    "id": "p3",
+    "title": "TES: Oblivion Remastered",
+    "category": "RPG",
+    "price": 4999,
+    "stock": 6,
+    "img": "https://i.postimg.cc/nrbHyj0j/Beru-Gaming-TES-Oblivion-Remastered.jpg",
+    "description": "RPG clásico con mundo abierto y decisiones morales."
+  },
+  {
+    "id": "p4",
+    "title": "Stardew Valley",
+    "category": "Simulation",
+    "price": 1999,
+    "stock": 20,
+    "img": "https://i.postimg.cc/RFfmLC4M/Beru-Gaming-Stardew-Valley.jpg",
+    "description": "Construí tu ciudad y administrá recursos."
+  },
+  {
+    "id": "p5",
+    "title": "Cronos: The New Dawn",
+    "category": "Aventura",
+    "price": 7999,
+    "stock": 7,
+    "img": "https://i.postimg.cc/B6W9bWDR/Beru-Gaming-Cronos.jpg",
+    "description": "Aventura narrativa con un foco en la exploración."
+  }
+]
