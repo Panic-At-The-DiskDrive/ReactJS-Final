@@ -10,24 +10,28 @@ function ItemListContainer({ mensaje }) {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    setLoading(true)
-    setError(null)
-
-    const fetcher = categoryId ? getProductsByCategory(categoryId) : getProducts()
-
-    fetcher
-      .then((res) => {
-        setItems(res)
-      })
-      .catch((err) => {
-        setError(err.message || 'Error al cargar productos')
-      })
-      .finally(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const data = categoryId
+          ? await getProductsByCategory(categoryId)
+          : await getProducts()
+        setItems(data)
+      } catch (err) {
+        console.error('Error cargando productos:', err)
+        setError('No se pudieron cargar los productos. Intentalo más tarde.')
+      } finally {
         setLoading(false)
-      })
+      }
+    }
+
+    fetchData()
   }, [categoryId])
 
-  const heading = categoryId ? `Categoría: ${categoryId}` : (mensaje || 'Catálogo completo')
+  const heading = categoryId
+    ? `Categoría: ${categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}`
+    : mensaje || 'Catálogo completo'
 
   return (
     <div className="container mt-4">
@@ -36,12 +40,17 @@ function ItemListContainer({ mensaje }) {
       {loading && <p className="text-center">Cargando productos...</p>}
       {error && <p className="text-danger text-center">{error}</p>}
 
-      {!loading && !error && <ItemList items={items} />}
+      {!loading && !error && items.length === 0 && (
+        <p className="text-center text-muted">No hay productos disponibles.</p>
+      )}
+
+      {!loading && !error && items.length > 0 && <ItemList items={items} />}
     </div>
   )
 }
 
 export default ItemListContainer
+
 
 
 

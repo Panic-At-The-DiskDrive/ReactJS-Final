@@ -1,28 +1,37 @@
-import catalogo from '../data/catalogo.json'
+import { db } from './firebase'
+import { collection, doc, getDocs, getDoc, query, where } from 'firebase/firestore'
+
+const productsCollection = collection(db, 'games')
 
 export function getProducts() {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(catalogo), 600)
+  return getDocs(productsCollection).then((snapshot) => {
+    const products = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    return products
   })
 }
 
 export function getProductsByCategory(categoryId) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const filtered = catalogo.filter(
-        (p) => p.category.toLowerCase() === categoryId.toLowerCase()
-      )
-      resolve(filtered)
-    }, 600)
+  const q = query(productsCollection, where('category', '==', categoryId))
+  return getDocs(q).then((snapshot) => {
+    const products = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    return products
   })
 }
 
 export function getProductById(id) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const product = catalogo.find((p) => p.id === id)
-      if (product) resolve(product)
-      else reject(new Error('Producto no encontrado'))
-    }, 600)
+  const docRef = doc(db, 'games', id)
+  return getDoc(docRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      return { id: snapshot.id, ...snapshot.data() }
+    } else {
+      throw new Error('Producto no encontrado')
+    }
   })
 }
+

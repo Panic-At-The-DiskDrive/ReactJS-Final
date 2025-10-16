@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, InputGroup, FormControl } from 'react-bootstrap'
 
 function ItemCount({ stock = 10, initial = 1, onAdd }) {
-  const [count, setCount] = useState(initial)
 
-  const increment = () => setCount((c) => Math.min(c + 1, stock))
-  const decrement = () => setCount((c) => Math.max(c - 1, 1))
+  const [count, setCount] = useState(Math.min(Math.max(initial, 1), stock))
+
+  useEffect(() => {
+
+    if (count > stock) setCount(stock)
+  }, [stock, count])
+
+  const increment = () => setCount(c => Math.min(c + 1, stock))
+  const decrement = () => setCount(c => Math.max(c - 1, 1))
+
   const handleAdd = () => {
     if (onAdd) onAdd(count)
   }
@@ -21,7 +28,7 @@ function ItemCount({ stock = 10, initial = 1, onAdd }) {
           +
         </Button>
       </InputGroup>
-      <Button variant="success" onClick={handleAdd}>
+      <Button variant="success" onClick={handleAdd} disabled={stock === 0}>
         Agregar al carrito
       </Button>
     </div>
@@ -29,3 +36,4 @@ function ItemCount({ stock = 10, initial = 1, onAdd }) {
 }
 
 export default ItemCount
+

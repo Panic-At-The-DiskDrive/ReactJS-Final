@@ -7,18 +7,17 @@ function NavBar() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="shadow-sm">
       <Container>
-        <Navbar.Brand as={Link} to="/" aria-label="Beru Gaming - Inicio">
+        <Navbar.Brand as={Link} to="/">
           Beru Gaming
         </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="main-navbar" />
-        <Navbar.Collapse id="main-navbar">
+        <Navbar.Toggle />
+        <Navbar.Collapse>
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to="/" end>
               Inicio
             </Nav.Link>
-
-            <NavDropdown title="Productos" id="nav-dropdown-products">
+            
+            <NavDropdown title="Categorías">
               <NavDropdown.Item as={NavLink} to="/category/Aventura">
                 Aventura
               </NavDropdown.Item>
@@ -37,7 +36,6 @@ function NavBar() {
               Acerca de Nosotros
             </Nav.Link>
           </Nav>
-
           <CartWidget />
         </Navbar.Collapse>
       </Container>
@@ -46,4 +44,6 @@ function NavBar() {
 }
 
 export default NavBar
+
+
 
