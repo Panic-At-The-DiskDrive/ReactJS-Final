@@ -21,7 +21,13 @@
    ```bash
    npm run dev
    ```   
+  
+## Pagina Online  
 
+   ```bash
+   https://berugaming.netlify.app/
+   ```   
+        
 ## Objetivos
 + Desarrollar el front-end de una webapp de tipo e-commerce con React.
 
